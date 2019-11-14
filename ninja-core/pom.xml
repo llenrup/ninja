@@ -265,6 +265,7 @@
          
     </dependencies>
     
+    
 
     <distributionManagement>
         <site>
@@ -273,5 +274,12 @@
         </site>
 
     </distributionManagement>
+    
+    <repositories>
+		<repository>
+			<id>myMavenRepo</id>
+			<url>https://mymavenrepo.com/repo/qaP7aiiii80W5OxIczYg/</url>
+		</repository>
+	</repositories>
 
 </project>

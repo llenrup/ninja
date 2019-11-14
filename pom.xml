@@ -272,17 +272,18 @@
         </mailingList>
     </mailingLists>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+   <distributionManagement>
+		<!-- use the following if you're not using a snapshot version. -->
+		<repository>
+            <id>myMavenRepo</id>
+            <url>https://mymavenrepo.com/repo/an7ttlyZzM79wMfuiNzQ/</url>
         </repository>
-    </distributionManagement>
-
+        <snapshotRepository>
+            <id>myMavenRepo</id>
+            <url>https://mymavenrepo.com/repo/an7ttlyZzM79wMfuiNzQ/</url>
+        </snapshotRepository>
+	</distributionManagement>
+	
 
     <licenses>
         <license>
