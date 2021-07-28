@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2012-2019 the original author or authors.
+ * Copyright (C) the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,8 +70,8 @@ public class ApiControllerDocTest extends NinjaApiDocTest {
         say("Please note that you have to be authenticated in order to be allowed to post.");
         
         ArticleDto articleDto = new ArticleDto();
-        articleDto.content = "contentsanitised <script>alert(1);</script>";
-        articleDto.title = "new title new title <script>alert(1);</script>";
+        articleDto.content = "<p>content</p><script>alert(1);</script>";
+        articleDto.title = "<h1>new title</h1><script>alert(1);</script>";
 
         apiResponse = makePostRequest(buildUri(POST_ARTICLE_URL.replace("{username}", USER)), articleDto);
         assertEqualsAndSay(403, apiResponse.httpStatus, "You have to be authenticated in order to post articles");
@@ -93,7 +93,7 @@ public class ApiControllerDocTest extends NinjaApiDocTest {
         // one new result:
         assertEqualsAndSay(4, articlesDto.articles.size(), "We are now getting 4 articles.");
         
-        assertEqualsAndSay("contentsanitised ", articlesDto.articles.get(3).content,  "We have sanitised article.");   
+        assertEqualsAndSay("<p>content</p>", articlesDto.articles.get(3).content,  "Content is sanitized.");   
 
     }
 

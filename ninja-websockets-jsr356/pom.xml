@@ -25,10 +25,10 @@
     <parent>
         <groupId>org.ninjaframework</groupId>
         <artifactId>ninja</artifactId>
-        <version>6.5.1-SNAPSHOT</version>
+        <version>6.8.2-SNAPSHOT</version>
     </parent>
     
-    <url>http://www.ninjaframework.org</url>
+    <url>https://www.ninjaframework.org</url>
 
     <build>
         <plugins>
