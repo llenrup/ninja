@@ -30,13 +30,14 @@ import ninja.migrations.MigrationEngine;
 public class MigrationEngineFlyway implements MigrationEngine {
 
     private final NinjaProperties ninjaProperties;
-    private final Provider<Flyway> flywayProvider;
+    //private final Provider<Flyway> flywayProvider;
 
     @Inject
     public MigrationEngineFlyway(NinjaProperties ninjaProperties,
-                                 Provider<Flyway> flywayProvider) {
+                                // Provider<Flyway> flywayProvider
+                                ) {
         this.ninjaProperties = ninjaProperties;
-        this.flywayProvider = flywayProvider;
+       // this.flywayProvider = flywayProvider;
     }
     
     @Override
@@ -50,15 +51,16 @@ public class MigrationEngineFlyway implements MigrationEngine {
 
         // We migrate automatically => if you do not want that (eg in production)
         // set ninja.migration.run=false in application.conf
-        Flyway flyway = flywayProvider.get();
-        flyway.setDataSource(connectionUrl, connectionUsername, connectionPassword);
-
-        if (locations != null) {
-            flyway.setLocations(locations);
-        }
+        
+        // Flyway configuration changed
+        FluentConfiguration configure = Flyway.configure();
         if (schemas != null) {
-            flyway.setSchemas(schemas);
+        	configure.schemas(schemas);
         }
+        if (locations != null) {
+        	configure.locations(locations);
+        }
+		Flyway flyway = configure.dataSource(connectionUrl, connectionUsername, connectionPassword).load();
 
         // In testmode we are cleaning the database so that subsequent testcases
         // get a fresh database.
